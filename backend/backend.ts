@@ -31,6 +31,11 @@ export const updateTodo = (updateTodo: UpdateTodo): Todo[] => {
   const todos = fetchTodosFromDb();
 
   const index = todos.findIndex((todo) => todo.uuid === updateTodo.uuid);
+
+  if (index < 0) {
+    return todos;
+  }
+
   const oldTodo = todos[index];
 
   oldTodo.content = updateTodo.content;
