@@ -1,8 +1,8 @@
-import { DeleteDto } from './../models/dtos/delete-todo.dto';
-import { CreateTodo } from './../models/dtos/create-todo.dto';
+import type { DeleteDto } from './../models/dtos/delete-todo.dto';
+import type { CreateTodo } from './../models/dtos/create-todo.dto';
 import { Todo } from '../models/todo.model';
 import { BACKEND_KEY } from './../constants/backend';
-import { UpdateTodo } from '../models/dtos/update-todo.dto';
+import type { UpdateTodo } from '../models/dtos/update-todo.dto';
 
 export const fetchTodosFromDb = (): Todo[] => {
   const backendTodosString = localStorage.getItem(BACKEND_KEY);
