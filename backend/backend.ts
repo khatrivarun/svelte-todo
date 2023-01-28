@@ -12,6 +12,7 @@ export const fetchTodosFromDb = (): Todo[] => {
 
     return todos.map((rawTodo: any) => Todo.fromJson(rawTodo));
   } else {
+    localStorage.setItem(BACKEND_KEY, JSON.stringify([]));
     return [];
   }
 };
@@ -49,4 +50,3 @@ export const deleteDto = (deleteDto: DeleteDto): Todo[] => {
 
   return fetchTodosFromDb();
 };
-
