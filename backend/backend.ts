@@ -1,8 +1,8 @@
-import { DeleteDto } from './../models/dtos/delete-todo.dto';
-import { CreateTodo } from './../models/dtos/create-todo.dto';
+import type { DeleteDto } from './../models/dtos/delete-todo.dto';
+import type { CreateTodo } from './../models/dtos/create-todo.dto';
 import { Todo } from '../models/todo.model';
 import { BACKEND_KEY } from './../constants/backend';
-import { UpdateTodo } from '../models/dtos/update-todo.dto';
+import type { UpdateTodo } from '../models/dtos/update-todo.dto';
 
 export const fetchTodosFromDb = (): Todo[] => {
   const backendTodosString = localStorage.getItem(BACKEND_KEY);
@@ -12,6 +12,7 @@ export const fetchTodosFromDb = (): Todo[] => {
 
     return todos.map((rawTodo: any) => Todo.fromJson(rawTodo));
   } else {
+    localStorage.setItem(BACKEND_KEY, JSON.stringify([]));
     return [];
   }
 };
@@ -30,6 +31,11 @@ export const updateTodo = (updateTodo: UpdateTodo): Todo[] => {
   const todos = fetchTodosFromDb();
 
   const index = todos.findIndex((todo) => todo.uuid === updateTodo.uuid);
+
+  if (index < 0) {
+    return todos;
+  }
+
   const oldTodo = todos[index];
 
   oldTodo.content = updateTodo.content;
@@ -49,4 +55,3 @@ export const deleteDto = (deleteDto: DeleteDto): Todo[] => {
 
   return fetchTodosFromDb();
 };
-
