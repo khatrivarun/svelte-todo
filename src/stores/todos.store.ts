@@ -1,5 +1,10 @@
+import type { UpdateTodo } from './../../models/dtos/update-todo.dto';
 import type { CreateTodo } from './../../models/dtos/create-todo.dto';
-import { fetchTodosFromDb, createNewTodo } from './../../backend/backend';
+import {
+  fetchTodosFromDb,
+  createNewTodo,
+  updateTodo as updateTodoFN,
+} from './../../backend/backend';
 import { writable } from 'svelte/store';
 
 const createTodoStore = () => {
@@ -11,6 +16,10 @@ const createTodoStore = () => {
     subscribe,
     createTodo: (createTodo: CreateTodo) => {
       const updatedTodos = createNewTodo(createTodo);
+      set(updatedTodos);
+    },
+    updateTodo: (updateTodo: UpdateTodo) => {
+      const updatedTodos = updateTodoFN(updateTodo);
       set(updatedTodos);
     },
   };
