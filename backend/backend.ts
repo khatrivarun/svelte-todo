@@ -1,3 +1,4 @@
+import { DeleteDto } from './../models/dtos/delete-todo.dto';
 import { CreateTodo } from './../models/dtos/create-todo.dto';
 import { Todo } from '../models/todo.model';
 import { BACKEND_KEY } from './../constants/backend';
@@ -36,6 +37,15 @@ export const updateTodo = (updateTodo: UpdateTodo): Todo[] => {
 
   todos[index] = oldTodo;
   localStorage.setItem(BACKEND_KEY, JSON.stringify(todos));
+
+  return fetchTodosFromDb();
+};
+
+export const deleteDto = (deleteDto: DeleteDto): Todo[] => {
+  const todos = fetchTodosFromDb();
+
+  const updatedTodos = todos.filter((todo) => todo.uuid !== deleteDto.uuid);
+  localStorage.setItem(BACKEND_KEY, JSON.stringify(updatedTodos));
 
   return fetchTodosFromDb();
 };
