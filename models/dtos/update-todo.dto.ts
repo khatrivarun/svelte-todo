@@ -3,7 +3,11 @@ export class UpdateTodo {
   public content: string;
   public isCompleted: boolean;
 
-  static newDto(uuid: string, content: string, isCompleted): UpdateTodo {
+  static newDto(
+    uuid: string,
+    content: string,
+    isCompleted: boolean
+  ): UpdateTodo {
     const newDto = new UpdateTodo();
 
     newDto.uuid = uuid;
