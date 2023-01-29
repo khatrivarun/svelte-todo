@@ -5,6 +5,16 @@ export class Todo {
   public content: string;
   public isCompleted: boolean;
 
+  static emptyTodo(): Todo {
+    const newTodo = new Todo();
+
+    newTodo.uuid = '';
+    newTodo.content = '';
+    newTodo.isCompleted = false;
+
+    return newTodo;
+  }
+
   static newTodo(content: string): Todo {
     const newTodo = new Todo();
 
@@ -25,4 +35,3 @@ export class Todo {
     return todo;
   }
 }
-
