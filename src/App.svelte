@@ -2,4 +2,6 @@
   let name = 'world';
 </script>
 
-<h1>Hello, {name}</h1>
+<div class="dark">
+  <h1 class="text-3xl font-bold">Hello, {name}</h1>
+</div>
